@@ -241,6 +241,63 @@
   .ticket-cta:hover{background:#6e2a1d;}
   .ticket-cta:disabled{opacity:0.4; cursor:not-allowed;}
 
+  /* ---------- CHECKOUT DETAILS MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(43,38,32,0.55);
+    display:none; align-items:center; justify-content:center;
+    z-index:200; padding:20px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-box{
+    background:var(--parchment);
+    border-radius:6px;
+    max-width:420px; width:100%;
+    padding:32px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.3);
+    position:relative;
+  }
+  .modal-close{
+    position:absolute; top:18px; right:18px;
+    background:none; border:none; font-size:20px; cursor:pointer;
+    color:var(--espresso); opacity:0.5; line-height:1;
+    width:28px; height:28px; display:flex; align-items:center; justify-content:center;
+  }
+  .modal-close:hover{opacity:1;}
+  .modal-box h3{font-size:23px; margin-bottom:6px;}
+  .modal-sub{font-size:14px; opacity:0.65; margin-bottom:24px; line-height:1.5;}
+  .form-group{margin-bottom:16px;}
+  .form-group label{
+    display:block; font-family:'Space Mono',monospace; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:0.04em; opacity:0.65; margin-bottom:7px;
+  }
+  .form-group input{
+    width:100%; padding:12px 14px; border:1px solid var(--line);
+    border-radius:4px; background:#fff; font-family:'Archivo',sans-serif;
+    font-size:15px; color:var(--espresso);
+  }
+  .form-group input:focus{outline:2px solid var(--brick); outline-offset:1px; border-color:var(--brick);}
+  .form-group input.invalid{border-color:var(--brick); background:#FCF0EC;}
+  .field-error{
+    font-size:12.5px; color:var(--brick); margin-top:5px; display:none;
+  }
+  .field-error.show{display:block;}
+  .modal-summary{
+    background:var(--paper); border-radius:4px; padding:14px 16px;
+    margin-bottom:20px; font-family:'Space Mono',monospace; font-size:13px;
+    display:flex; justify-content:space-between;
+  }
+  .modal-submit{
+    width:100%; background:var(--brick); color:var(--parchment);
+    border:none; padding:15px; border-radius:4px;
+    font-family:'Space Mono',monospace; font-weight:700; font-size:13.5px;
+    letter-spacing:0.03em; cursor:pointer;
+  }
+  .modal-submit:hover{background:#6e2a1d;}
+  .modal-submit:disabled{opacity:0.5; cursor:not-allowed;}
+  .modal-note{
+    font-size:12px; opacity:0.55; margin-top:14px; text-align:center; line-height:1.5;
+  }
+
   /* ---------- ABOUT STRIP ---------- */
   .about{
     background:var(--espresso); color:var(--parchment);
@@ -379,6 +436,26 @@
             <div class="item-price">£4.10</div>
             <button class="add-btn" aria-label="Add Iced Oat Latte">+</button>
           </div>
+          <div class="menu-item" data-name="Americano" data-price="3.00">
+            <div><div class="item-name">Americano</div><div class="item-desc">Double espresso, hot water, simple and strong</div></div>
+            <div class="item-price">£3.00</div>
+            <button class="add-btn" aria-label="Add Americano">+</button>
+          </div>
+          <div class="menu-item" data-name="Cappuccino" data-price="3.50">
+            <div><div class="item-name">Cappuccino</div><div class="item-desc">Equal parts espresso, milk, and foam</div></div>
+            <div class="item-price">£3.50</div>
+            <button class="add-btn" aria-label="Add Cappuccino">+</button>
+          </div>
+          <div class="menu-item" data-name="Hot Chocolate" data-price="3.80">
+            <div><div class="item-name">Hot Chocolate</div><div class="item-desc">Belgian dark chocolate, steamed milk</div></div>
+            <div class="item-price">£3.80</div>
+            <button class="add-btn" aria-label="Add Hot Chocolate">+</button>
+          </div>
+          <div class="menu-item" data-name="Chai Latte" data-price="3.90">
+            <div><div class="item-name">Chai Latte</div><div class="item-desc">House-spiced chai, steamed milk</div></div>
+            <div class="item-price">£3.90</div>
+            <button class="add-btn" aria-label="Add Chai Latte">+</button>
+          </div>
         </div>
 
         <div class="menu-category">
@@ -400,6 +477,21 @@
             <div class="item-price">£3.60</div>
             <button class="add-btn" aria-label="Add Almond Croissant">+</button>
           </div>
+          <div class="menu-item" data-name="Plain Croissant" data-price="2.80">
+            <div><div class="item-name">Plain Croissant</div><div class="item-desc">All butter, baked fresh each morning</div></div>
+            <div class="item-price">£2.80</div>
+            <button class="add-btn" aria-label="Add Plain Croissant">+</button>
+          </div>
+          <div class="menu-item" data-name="Cinnamon Bun" data-price="3.40">
+            <div><div class="item-name">Cinnamon Bun</div><div class="item-desc">Slow-proofed, brown butter icing</div></div>
+            <div class="item-price">£3.40</div>
+            <button class="add-btn" aria-label="Add Cinnamon Bun">+</button>
+          </div>
+          <div class="menu-item" data-name="Banana Bread Slice" data-price="3.10">
+            <div><div class="item-name">Banana Bread Slice</div><div class="item-desc">Walnut, dark muscovado sugar</div></div>
+            <div class="item-price">£3.10</div>
+            <button class="add-btn" aria-label="Add Banana Bread Slice">+</button>
+          </div>
         </div>
 
         <div class="menu-category">
@@ -415,6 +507,42 @@
             <div><div class="item-name">Soup of the Day</div><div class="item-desc">Ask what's simmering — changes daily</div></div>
             <div class="item-price">£5.50</div>
             <button class="add-btn" aria-label="Add Soup of the Day">+</button>
+          </div>
+          <div class="menu-item" data-name="Ham &amp; Cheese Toastie" data-price="6.20">
+            <div><div class="item-name">Ham &amp; Cheese Toastie</div><div class="item-desc">Smoked ham, mature cheddar, sourdough</div></div>
+            <div class="item-price">£6.20</div>
+            <button class="add-btn" aria-label="Add Ham and Cheese Toastie">+</button>
+          </div>
+          <div class="menu-item" data-name="Avocado on Toast" data-price="7.50">
+            <div><div class="item-name">Avocado on Toast</div><div class="item-desc">Smashed avocado, chilli flakes, lemon, feta</div></div>
+            <div class="item-price">£7.50</div>
+            <button class="add-btn" aria-label="Add Avocado on Toast">+</button>
+          </div>
+          <div class="menu-item" data-name="Houmous &amp; Veg Plate" data-price="6.80">
+            <div><div class="item-name">Houmous &amp; Veg Plate</div><div class="item-desc">House houmous, seasonal veg, flatbread</div></div>
+            <div class="item-price">£6.80</div>
+            <button class="add-btn" aria-label="Add Houmous and Veg Plate">+</button>
+          </div>
+        </div>
+
+        <div class="menu-category">
+          <h3>Cold Drinks</h3>
+          <span class="cat-note">Bottled &amp; house-made</span>
+
+          <div class="menu-item" data-name="Sparkling Water" data-price="2.20">
+            <div><div class="item-name">Sparkling Water</div><div class="item-desc">330ml bottle</div></div>
+            <div class="item-price">£2.20</div>
+            <button class="add-btn" aria-label="Add Sparkling Water">+</button>
+          </div>
+          <div class="menu-item" data-name="Fresh Orange Juice" data-price="3.50">
+            <div><div class="item-name">Fresh Orange Juice</div><div class="item-desc">Pressed to order</div></div>
+            <div class="item-price">£3.50</div>
+            <button class="add-btn" aria-label="Add Fresh Orange Juice">+</button>
+          </div>
+          <div class="menu-item" data-name="House Lemonade" data-price="3.30">
+            <div><div class="item-name">House Lemonade</div><div class="item-desc">Still or sparkling, mint</div></div>
+            <div class="item-price">£3.30</div>
+            <button class="add-btn" aria-label="Add House Lemonade">+</button>
           </div>
         </div>
 
@@ -498,6 +626,34 @@
   </div>
 </footer>
 
+<div class="modal-overlay" id="detailsModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+    <h3>Almost there</h3>
+    <p class="modal-sub">We just need a couple of details so we know whose order this is and can reach you if anything comes up.</p>
+
+    <div class="modal-summary">
+      <span id="modalItemCount">0 items</span>
+      <span id="modalTotal">£0.00</span>
+    </div>
+
+    <form id="detailsForm" novalidate>
+      <div class="form-group">
+        <label for="custName">Full name</label>
+        <input type="text" id="custName" name="custName" autocomplete="name" placeholder="e.g. Sam Carter">
+        <div class="field-error" id="nameError">Please enter your name.</div>
+      </div>
+      <div class="form-group">
+        <label for="custPhone">Phone number</label>
+        <input type="tel" id="custPhone" name="custPhone" autocomplete="tel" placeholder="e.g. 07123 456789">
+        <div class="field-error" id="phoneError">Please enter a valid UK phone number.</div>
+      </div>
+      <button type="submit" class="modal-submit" id="modalSubmit">CONTINUE TO PAYMENT</button>
+      <p class="modal-note">Your number is only used to contact you about this order. We'll text you when it's ready.</p>
+    </form>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -561,16 +717,87 @@
 
   // ---------------------------------------------------------------
   // STRIPE CHECKOUT INTEGRATION
-  // This calls YOUR backend (see /server/create-checkout-session.js),
+  // This calls YOUR backend (see /api/create-checkout-session.js),
   // which talks to Stripe using your secret key. Apple Pay, Google Pay
   // and standard debit/credit cards are all included automatically by
   // Stripe Checkout — there is nothing extra to configure for them here.
-  // Replace CHECKOUT_ENDPOINT with your deployed function's URL.
+  //
+  // CUSTOMER DETAILS: clicking the ticket button opens a short form for
+  // name + phone. These are validated in the browser for a fast response,
+  // then sent along with the order to the backend, which attaches them
+  // to the Stripe session as customer-provided fields and metadata — so
+  // they show up against the payment in your Stripe dashboard, and on
+  // the success page, ready to hand to whoever's running the kitchen.
   // ---------------------------------------------------------------
   const CHECKOUT_ENDPOINT = '/api/create-checkout-session';
 
-  checkoutBtn.addEventListener('click', async () => {
+  const detailsModal = document.getElementById('detailsModal');
+  const detailsForm = document.getElementById('detailsForm');
+  const modalClose = document.getElementById('modalClose');
+  const modalSubmit = document.getElementById('modalSubmit');
+  const modalItemCount = document.getElementById('modalItemCount');
+  const modalTotal = document.getElementById('modalTotal');
+  const nameInput = document.getElementById('custName');
+  const phoneInput = document.getElementById('custPhone');
+  const nameError = document.getElementById('nameError');
+  const phoneError = document.getElementById('phoneError');
+
+  function openModal(){
+    const items = Object.values(cart);
+    const count = items.reduce((s,it)=> s + it.qty, 0);
+    const subtotal = items.reduce((s,it)=> s + it.price*it.qty, 0);
+    modalItemCount.textContent = count + (count === 1 ? ' item' : ' items');
+    modalTotal.textContent = '£' + subtotal.toFixed(2);
+    detailsModal.classList.add('show');
+    nameInput.focus();
+  }
+
+  function closeModal(){
+    detailsModal.classList.remove('show');
+  }
+
+  checkoutBtn.addEventListener('click', () => {
     if(checkoutBtn.disabled) return;
+    openModal();
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  detailsModal.addEventListener('click', (e) => {
+    if(e.target === detailsModal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && detailsModal.classList.contains('show')) closeModal();
+  });
+
+  // Accepts UK mobile/landline formats: 07123456789, 07123 456789,
+  // +447123456789, 01217654321, with optional spaces/dashes.
+  function isValidUKPhone(value){
+    const cleaned = value.replace(/[\s-]/g, '');
+    return /^(\+44\d{9,10}|0\d{9,10})$/.test(cleaned);
+  }
+
+  function validateField(input, errorEl, isValid){
+    if(isValid){
+      input.classList.remove('invalid');
+      errorEl.classList.remove('show');
+      return true;
+    } else {
+      input.classList.add('invalid');
+      errorEl.classList.add('show');
+      return false;
+    }
+  }
+
+  detailsForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+
+    const nameOk = validateField(nameInput, nameError, name.length >= 2);
+    const phoneOk = validateField(phoneInput, phoneError, isValidUKPhone(phone));
+
+    if(!nameOk || !phoneOk) return;
 
     const items = Object.values(cart).map(it => ({
       name: it.name,
@@ -579,14 +806,18 @@
       quantity: it.qty
     }));
 
-    checkoutBtn.disabled = true;
-    checkoutBtn.textContent = 'REDIRECTING TO PAYMENT…';
+    modalSubmit.disabled = true;
+    modalSubmit.textContent = 'REDIRECTING TO PAYMENT…';
 
     try {
       const res = await fetch(CHECKOUT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items, currency: 'gbp' })
+        body: JSON.stringify({
+          items,
+          currency: 'gbp',
+          customer: { name, phone }
+        })
       });
 
       if(!res.ok) throw new Error('Checkout session request failed');
@@ -598,12 +829,15 @@
         throw new Error('No checkout URL returned');
       }
     } catch (err) {
-      // This demo has no live backend deployed, so this is expected here.
-      showToast('Demo only — connect the backend in /server to go live');
-      checkoutBtn.disabled = false;
-      checkoutBtn.textContent = 'CONTINUE TO PAYMENT';
+      showToast('Something went wrong starting checkout — please try again');
+      modalSubmit.disabled = false;
+      modalSubmit.textContent = 'CONTINUE TO PAYMENT';
     }
   });
+
+  // Clear inline errors as soon as the person starts correcting a field
+  nameInput.addEventListener('input', () => validateField(nameInput, nameError, nameInput.value.trim().length >= 2 || nameInput.value === ''));
+  phoneInput.addEventListener('input', () => { if(phoneInput.value === '') validateField(phoneInput, phoneError, true); });
 </script>
 
 </body>
