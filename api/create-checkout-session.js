@@ -37,10 +37,25 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { items, currency = 'gbp' } = req.body;
+    const { items, currency = 'gbp', customer = {} } = req.body;
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: 'No items provided' });
+    }
+
+    // Basic server-side validation of customer details. The browser already
+    // checks these, but never trust client-side validation alone — anyone
+    // can call this endpoint directly and skip the form.
+    const name = (customer.name || '').trim();
+    const phone = (customer.phone || '').trim();
+    const phoneDigits = phone.replace(/[\s-]/g, '');
+    const isValidUKPhone = /^(\+44\d{9,10}|0\d{9,10})$/.test(phoneDigits);
+
+    if (name.length < 2) {
+      return res.status(400).json({ error: 'A valid customer name is required' });
+    }
+    if (!isValidUKPhone) {
+      return res.status(400).json({ error: 'A valid UK phone number is required' });
     }
 
     // Build Stripe line items server-side from the cart sent by the browser.
@@ -67,6 +82,16 @@ module.exports = async function handler(req, res) {
       // UK-specific touches:
       locale: 'en-GB',
       billing_address_collection: 'auto',
+      // Customer pickup details: stored as metadata so they show up
+      // against the payment in your Stripe dashboard (Payments > click
+      // the payment > Metadata), and pre-filled as Stripe's own
+      // "phone number" collection field for confirmation purposes.
+      phone_number_collection: { enabled: true },
+      metadata: {
+        customer_name: name,
+        customer_phone: phone,
+        order_type: 'pickup',
+      },
     });
 
     return res.status(200).json({ url: session.url });
@@ -102,4 +127,3 @@ module.exports = async function handler(req, res) {
 //   return { statusCode: 200, body: JSON.stringify({ url: session.url }) };
 // };
 // ---------------------------------------------------------------------
-
